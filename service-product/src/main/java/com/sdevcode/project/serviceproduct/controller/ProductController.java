@@ -65,8 +65,8 @@ public class ProductController {
         }
     }
 
-    @PostMapping(value = "/delete-product/{id-product}")
-    public ResponseEntity<Map<String, Object>> postDeleteProduct(@PathVariable("id-product") String id){
+    @PostMapping(value = "/delete-product/{id_product}")
+    public ResponseEntity<Map<String, Object>> postDeleteProduct(@PathVariable("id_product") String id){
         try{
             productService.deleteProductById(id);
             Map<String, Object> responseObject = new HashMap<>();
@@ -85,8 +85,8 @@ public class ProductController {
         }
     }
 
-    @PostMapping(value = "/update-product/{id-product}")
-    public ResponseEntity<Map<String, Object>> postUpdateProduct(@PathVariable("id-product") String id, @RequestBody ProductRequest productRequest){
+    @PostMapping(value = "/update-product/{id_product}")
+    public ResponseEntity<Map<String, Object>> postUpdateProduct(@PathVariable("id_product") String id, @RequestBody ProductRequest productRequest){
         try{
             productService.updateProduct(id, productRequest);
             Map<String, Object> responseObject = new HashMap<>();

@@ -4,6 +4,9 @@ import com.sdevcode.project.serviceorder.dto.OrderRequestDTO;
 import com.sdevcode.project.serviceorder.model.Order;
 import com.sdevcode.project.serviceorder.model.OrderItems;
 import com.sdevcode.project.serviceorder.repository.OrderRepository;
+import com.sdevcode.project.serviceorder.repository.projection.QueryBuyerOrderPower;
+import com.sdevcode.project.serviceorder.repository.projection.QueryOrderByBuyerId;
+import com.sdevcode.project.serviceorder.repository.projection.QueryOrderByOrderNumber;
 import com.sdevcode.project.serviceorder.service.OrderService;
 import com.sdevcode.project.serviceorder.util.Utils;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -65,5 +66,47 @@ public class OrderServiceImpl implements OrderService {
         }catch (Exception e){
             throw new RuntimeException("Error deleting Order -> "+ e.getMessage());
         }
+    }
+
+    @Override
+    public List<Map<String, Object>>getOrderByBuyerId(Long buyer_id) {
+        List<QueryOrderByBuyerId> orderByBuyerId = orderRepository.getOrderByBuyerId(buyer_id);
+
+        List<Map<String, Object>> mappedOrder = orderByBuyerId.stream().map(each -> {
+            Map<String, Object> eachOrder = new HashMap<>();
+            eachOrder.put("order_id", each.getOrderId());
+            eachOrder.put("buyer_id", each.getBuyerId());
+            eachOrder.put("order_number", each.getOrderNumber());
+            eachOrder.put("payment_method", each.getPaymentMethod());
+            eachOrder.put("timestamp", each.getTimestamp());
+            eachOrder.put("total_order_price", each.getTotalOrderPrice());
+
+            record ProductDetails(
+                    Long order_items_id,
+                    String order_product_id,
+                    String order_product_name,
+                    String order_product_description,
+                    BigDecimal order_product_price,
+                    Integer order_quantity,
+                    BigDecimal totalProductPrice,
+                    Long order_id
+            ) { }
+            eachOrder.put("product-details", new ProductDetails(each.getOrderItemsId(), each.getOrderProductId(), each.getOrderProductName(), each.getOrderProductDescription(), each.getOrderProductPrice(), each.getOrderQuantity(), each.getTotalProductPrice(), each.getItemsOrderId()));
+            return eachOrder;
+        }).toList();
+
+        log.info("getOrderByBuyerId -> {}",mappedOrder);
+        return mappedOrder;
+
+    }
+
+    @Override
+    public List<QueryOrderByOrderNumber> getOrderByOrderNumber(String order_number) {
+        return orderRepository.getorderByOrderNumber(order_number);
+    }
+
+    @Override
+    public List<QueryBuyerOrderPower> getBuyerOrderPower() {
+        return orderRepository.getBuyerOrderPower();
     }
 }

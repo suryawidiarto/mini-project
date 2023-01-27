@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  mongo_db:
+    container_name: mongo_db
+    image: mongo:6-focal
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-data:/data/db
+    networks:
+      - mini_network
+
+  mysql_db:
+    container_name: mysql_db
+    image: mysql:8.0
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: service_order_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    networks:
+      - mini_network
+
+  service-discovery:
+    container_name: service-discovery
+    build: ./service-discovery/
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
+    networks:
+      - mini_network
+
+  service-api-gateway:
+    container_name: service-api-gateway
+    build: ./service-api-gateway/
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    depends_on:
+      - service-discovery
+    networks:
+      - mini_network
+
+  service-product:
+    container_name: service-product
+    build: ./service-product/
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    depends_on:
+      - service-discovery
+      - service-api-gateway
+      - mongo_db
+    networks:
+      - mini_network
+
+  service-order:
+    container_name: service-order
+    build: ./service-order/
+    restart: unless-stopped
+    ports:
+      - "8082:8082"
+    depends_on:
+      - service-discovery
+      - service-api-gateway
+      - mysql_db
+    networks:
+      - mini_network
+
+networks:
+  mini_network:
+    name: mini_network
