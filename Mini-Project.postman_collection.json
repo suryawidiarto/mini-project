@@ -1,0 +1,552 @@
+{
+	"info": {
+		"_postman_id": "66b6f923-bbba-43c2-a49e-07cca21963d7",
+		"name": "Mini-Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18668199"
+	},
+	"item": [
+		{
+			"name": "Service Product - Add Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_name\": \"IPHON 220\",\n    \"product_description\": \"This is description for IPHONE 220\",\n    \"product_price\": 2000\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/product/add-product",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"product",
+						"add-product"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_name\": \"IPHON 220\",\n    \"product_description\": \"This is description for IPHONE 220\",\n    \"product_price\": 2000\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/product/add-product",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"add-product"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Jan 2023 08:50:34 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Product successfully created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Service Product - Get All Product By Paging",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "transaction",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/api/product/products?page=1&size=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"product",
+						"products"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "transaction",
+								"value": ""
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/product/products?page=1&size=5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Jan 2023 08:50:51 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"product\": [\n        {\n            \"product_id\": \"63d38ecc2259604317b91ad9\",\n            \"product_name\": \"IPHON 220\",\n            \"product_description\": \"This is description for IPHONE 220\",\n            \"product_price\": 2000\n        },\n        {\n            \"product_id\": \"63d3905a972450186e2d84e0\",\n            \"product_name\": \"IPHON 220\",\n            \"product_description\": \"This is description for IPHONE 220\",\n            \"product_price\": 2000\n        },\n        {\n            \"product_id\": \"63d38a2a2259604317b91ad6\",\n            \"product_name\": \"IPHON 220\",\n            \"product_description\": \"This is description for IPHONE 220\",\n            \"product_price\": 10000\n        },\n        {\n            \"product_id\": \"63d2b4dcf319cc6e3731a46c\",\n            \"product_name\": \"IPHON 220\",\n            \"product_description\": \"This is description for IPHONE 220\",\n            \"product_price\": 10000\n        },\n        {\n            \"product_id\": \"63d38d262259604317b91ad7\",\n            \"product_name\": \"IPHON 220\",\n            \"product_description\": \"This is description for IPHONE 220\",\n            \"product_price\": 2000\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Service Product - Delete Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/product/delete-product/63d38e442259604317b91ad8",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"product",
+						"delete-product",
+						"63d38e442259604317b91ad8"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/product/delete-product/63d38ecc2259604317b91ad9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"delete-product",
+								"63d38ecc2259604317b91ad9"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Jan 2023 08:51:16 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Product successfully deleted\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Service Product - Update Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_price\": 10000\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/product/update-product/63d3905a972450186e2d84e0",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"product",
+						"update-product",
+						"63d3905a972450186e2d84e0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_price\": 10000\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/product/update-product/63d3905a972450186e2d84e0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"update-product",
+								"63d3905a972450186e2d84e0"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Jan 2023 08:51:54 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Product successfully updated\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Service Order - Create Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"buyer_id\": 123,\r\n    \"payment_method\": \"DANA\",\r\n    \"product_list\": [\r\n        {\r\n            \"order_product_id\": \"A1\",\r\n            \"order_product_name\": \"IPHONE XXX\",\r\n            \"order_product_description\": \"This is description for IPHONE XXX\",\r\n            \"order_product_price\": 15000,\r\n            \"order_quantity\": 10\r\n        },\r\n        {\r\n            \"order_product_id\": \"A2\",\r\n            \"order_product_name\": \"IPHONE XXX1\",\r\n            \"order_product_description\": \"This is description for IPHONE XXX1\",\r\n            \"order_product_price\": 15000,\r\n            \"order_quantity\": 1\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/order/create-order",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"order",
+						"create-order"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"buyer_id\": 10213,\r\n    \"payment_method\": \"DANA\",\r\n    \"order_items\": [\r\n        {\r\n            \"order_product_id\": \"63d2b4dcf319cc6e3731a46c\",\r\n            \"order_product_name\": \"IPHON 220\",\r\n            \"order_product_description\": \"This is description for IPHONE 220\",\r\n            \"order_product_price\": 100000,\r\n            \"order_quantity\": 10\r\n        },\r\n        {\r\n            \"order_product_id\": \"A2\",\r\n            \"order_product_name\": \"IPHONE XXX1\",\r\n            \"order_product_description\": \"This is description for IPHONE XXX1\",\r\n            \"order_product_price\": 155000,\r\n            \"order_quantity\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/order/create-order",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"order",
+								"create-order"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Jan 2023 08:52:27 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Order created successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Service Order - Get Order By Buyer Id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"buyer_id\": 111,\n    \"payment_method\": \"DANA\",\n    \"order_items\": [\n        {\n            \"order_product_id\": \"63d2b4dcf319cc6e3731a46c\",\n            \"order_product_name\": \"IPHON 220\",\n            \"order_product_description\": \"This is description for IPHONE 220\",\n            \"order_product_price\": 10000,\n            \"order_quantity\": 10\n        },\n        {\n            \"order_product_id\": \"A2\",\n            \"order_product_name\": \"IPHONE XXX1\",\n            \"order_product_description\": \"This is description for IPHONE XXX1\",\n            \"order_product_price\": 15000,\n            \"order_quantity\": 1\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/order/get-order",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"order",
+						"get-order"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"buyer_id\": 10213\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/order/get-order-buyer",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"order",
+								"get-order-buyer"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Jan 2023 08:54:01 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Get order successfull\",\n    \"order\": [\n        {\n            \"order_number\": \"853afe5b-bf4a-427b-8d9e-7a1a13d3d96c\",\n            \"product-details\": {\n                \"order_items_id\": 17,\n                \"order_product_id\": \"63d2b4dcf319cc6e3731a46c\",\n                \"order_product_name\": \"IPHON 220\",\n                \"order_product_description\": \"This is description for IPHONE 220\",\n                \"order_product_price\": 100000,\n                \"order_quantity\": 10,\n                \"totalProductPrice\": 1000000,\n                \"order_id\": 16\n            },\n            \"buyer_id\": 10213,\n            \"order_id\": 16,\n            \"payment_method\": \"DANA\",\n            \"timestamp\": 1674809544512,\n            \"total_order_price\": 1155000\n        },\n        {\n            \"order_number\": \"853afe5b-bf4a-427b-8d9e-7a1a13d3d96c\",\n            \"product-details\": {\n                \"order_items_id\": 18,\n                \"order_product_id\": \"A2\",\n                \"order_product_name\": \"IPHONE XXX1\",\n                \"order_product_description\": \"This is description for IPHONE XXX1\",\n                \"order_product_price\": 155000,\n                \"order_quantity\": 1,\n                \"totalProductPrice\": 155000,\n                \"order_id\": 16\n            },\n            \"buyer_id\": 10213,\n            \"order_id\": 16,\n            \"payment_method\": \"DANA\",\n            \"timestamp\": 1674809544512,\n            \"total_order_price\": 1155000\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Service Order - Get Order By Order Number",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"buyer_id\": 111,\n    \"payment_method\": \"DANA\",\n    \"order_items\": [\n        {\n            \"order_product_id\": \"63d2b4dcf319cc6e3731a46c\",\n            \"order_product_name\": \"IPHON 220\",\n            \"order_product_description\": \"This is description for IPHONE 220\",\n            \"order_product_price\": 10000,\n            \"order_quantity\": 10\n        },\n        {\n            \"order_product_id\": \"A2\",\n            \"order_product_name\": \"IPHONE XXX1\",\n            \"order_product_description\": \"This is description for IPHONE XXX1\",\n            \"order_product_price\": 15000,\n            \"order_quantity\": 1\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/order/get-order/853afe5b-bf4a-427b-8d9e-7a1a13d3d96c",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"order",
+						"get-order",
+						"853afe5b-bf4a-427b-8d9e-7a1a13d3d96c"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"buyer_id\": 111,\n    \"payment_method\": \"DANA\",\n    \"order_items\": [\n        {\n            \"order_product_id\": \"63d2b4dcf319cc6e3731a46c\",\n            \"order_product_name\": \"IPHON 220\",\n            \"order_product_description\": \"This is description for IPHONE 220\",\n            \"order_product_price\": 10000,\n            \"order_quantity\": 10\n        },\n        {\n            \"order_product_id\": \"A2\",\n            \"order_product_name\": \"IPHONE XXX1\",\n            \"order_product_description\": \"This is description for IPHONE XXX1\",\n            \"order_product_price\": 15000,\n            \"order_quantity\": 1\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/order/get-order/853afe5b-bf4a-427b-8d9e-7a1a13d3d96c",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"order",
+								"get-order",
+								"853afe5b-bf4a-427b-8d9e-7a1a13d3d96c"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Jan 2023 08:55:07 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Get order successfull\",\n    \"order\": [\n        {\n            \"timestamp\": 1674809544512,\n            \"totalPrice\": 1155000,\n            \"buyerId\": 10213,\n            \"orderNumber\": \"853afe5b-bf4a-427b-8d9e-7a1a13d3d96c\",\n            \"paymentMethod\": \"DANA\",\n            \"orderId\": 16\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}
